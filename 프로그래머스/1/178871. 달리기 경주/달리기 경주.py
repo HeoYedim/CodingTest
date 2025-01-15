@@ -1,16 +1,13 @@
 def solution(players, callings):
+    player_dict = {player: rank for rank, player in enumerate(players)}
     
-    player_dic = {player : rank for rank, player in enumerate(players)}
-    
-    for call in callings:
+    for calling in callings:
+        current_rank = player_dict[calling]
+        previous_rank = current_rank - 1
         
-        winner = player_dic[call]
-        loser =  winner - 1
+        players[current_rank], players[previous_rank] = players[previous_rank], players[current_rank]
         
-        players[winner], players[loser] = players[loser], players[winner]
-        
-        player_dic[players[winner]] += 1
-        player_dic[players[loser]] -= 1
-        
+        player_dict[players[current_rank]] = current_rank
+        player_dict[players[previous_rank]] = previous_rank
         
     return players
