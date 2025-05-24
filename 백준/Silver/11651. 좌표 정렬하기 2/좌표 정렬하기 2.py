@@ -1,8 +1,8 @@
-num = int(input())
-xy_list = []
+import sys
+input = sys.stdin.readline
 
-for _ in range(num):
-    xy_list.append(list(map(int, input().split())))
+N = int(input())
+xy_list = [tuple(map(int, input().split())) for _ in range(N)]
 
 xy_list.sort(key = lambda x: (x[1], x[0]))
 
